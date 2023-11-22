@@ -1,7 +1,7 @@
 
 function showCalendar(){
     let myEvents = [];
-    axios.get(`${serverURL}/steps/userID/eq/${loggedUser.ID}`).then(res=>{
+    axios.get(`${serverURL}/money/userID/eq/${loggedUser.ID}`).then(res=>{
         res.data.forEach(item => {
             myEvents.push({
                 title: item.steps,

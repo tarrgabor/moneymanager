@@ -1,8 +1,8 @@
 function getAllSteps(){
     let tbody = document.querySelector('tbody');
-    let sumSteps = document.querySelector('#sumSteps');
+    let sumSteps = document.querySelector('#sumMoney');
 
-    axios.get(`${serverURL}/steps/userID/eq/${loggedUser.ID}`).then(res=>{
+    axios.get(`${serverURL}/money/userID/eq/${loggedUser.ID}`).then(res=>{
         let i = 0;
         let sum = 0;
         res.data.sort((a,b) => a.date.localeCompare(b.date));

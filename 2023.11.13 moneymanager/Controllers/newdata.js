@@ -10,13 +10,13 @@ function getToday(){
 function addSteps(){
 
     let date = document.querySelector('#date');
-    let steps = document.querySelector('#steps');
+    let money = document.querySelector('#money');
 
-    if (date.value == "" || steps.value == 0 ){
+    if (date.value == "" || money.value == 0 ){
         showMessage("Nem adtál meg minden adatot!");
     }
     else{
-        axios.get(`${serverURL}/steps/userID/eq/${loggedUser.ID}`).then(res=>{
+        axios.get(`${serverURL}/money/userID/eq/${loggedUser.ID}`).then(res=>{
             let vane = false;
             let upID = -1;
             res.data.forEach(item => {
@@ -28,25 +28,25 @@ function addSteps(){
             });
             if(vane){
                 let data = {
-                    steps : steps.value	
+                    money : money.value	
                 }
-                axios.patch(`${serverURL}/steps/ID/eq/${upID}`, data).then((res)=>{
+                axios.patch(`${serverURL}/money/ID/eq/${upID}`, data).then((res)=>{
                     alert('A lépésszám módosítva!');
                     date.value = null;
-                    steps.value = 0;
+                    money.value = 0;
                 });
             }
             else{
                 let data = {
                     userID : loggedUser.ID,	
                     date : date.value,	
-                    steps : steps.value	
+                    money : money.value	
                 }
 
                 axios.post(`${serverURL}/steps`, data).then((res)=>{
                     alert('A lépésszám rögzítve!');
                     date.value = null;
-                    steps.value = 0;
+                    money.value = 0;
                 });
             }
         })
