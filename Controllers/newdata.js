@@ -7,7 +7,7 @@ function getToday(){
     setTimeout(()=>{setMaxDate()}, 500);
 }
 
-function addSteps(){
+function addMoney(){
 
     let date = document.querySelector('#date');
     let money = document.querySelector('#money');
@@ -16,7 +16,7 @@ function addSteps(){
         showMessage("Nem adtál meg minden adatot!");
     }
     else{
-        axios.get(`${serverURL}/money/userID/eq/${loggedUser.ID}`).then(res=>{
+        axios.get(`${serverURL}/items/userID/eq/${loggedUser.ID}`).then(res=>{
             let vane = false;
             let upID = -1;
             res.data.forEach(item => {
@@ -30,7 +30,7 @@ function addSteps(){
                 let data = {
                     money : money.value	
                 }
-                axios.patch(`${serverURL}/money/ID/eq/${upID}`, data).then((res)=>{
+                axios.patch(`${serverURL}/items/ID/eq/${upID}`, data).then((res)=>{
                     alert('A lépésszám módosítva!');
                     date.value = null;
                     money.value = 0;
@@ -43,8 +43,8 @@ function addSteps(){
                     money : money.value	
                 }
 
-                axios.post(`${serverURL}/steps`, data).then((res)=>{
-                    alert('A lépésszám rögzítve!');
+                axios.post(`${serverURL}/items`, data).then((res)=>{
+                    alert('Az összeg rögzítve!');
                     date.value = null;
                     money.value = 0;
                 });
